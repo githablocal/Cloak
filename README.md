@@ -48,18 +48,18 @@ this [script](https://github.com/HirbodBehnam/Shadowsocks-Cloak-Installer/blob/m
 Table of Contents
 =================
 
-* [Quick Start](#quick-start)
-* [Build](#build)
-* [Configuration](#configuration)
-    * [Server](#server)
-    * [Client](#client)
-* [Setup](#setup)
-    * [Server](#server-1)
-        * [To add users](#to-add-users)
-            * [Unrestricted users](#unrestricted-users)
-            * [Users subject to bandwidth and credit controls](#users-subject-to-bandwidth-and-credit-controls)
-    * [Client](#client-1)
-* [Support me](#support-me)
+- [Table of Contents](#table-of-contents)
+  - [Build](#build)
+  - [Configuration](#configuration)
+    - [Server](#server)
+    - [Client](#client)
+  - [Setup](#setup)
+    - [Server](#server-1)
+      - [To add users](#to-add-users)
+        - [Unrestricted users](#unrestricted-users)
+        - [Users subject to bandwidth and credit controls](#users-subject-to-bandwidth-and-credit-controls)
+    - [Client](#client-1)
+  - [Support me](#support-me)
 
 ## Build
 
@@ -155,8 +155,13 @@ Example:
 `CDNOriginHost` is the domain name of the _origin_ server (i.e. the server running Cloak) under `CDN` mode. This only
 has effect when `Transport` is set to `CDN`. If unset, it will default to the remote hostname supplied via the
 commandline argument (in standalone mode), or by Shadowsocks (in plugin mode). After a TLS session is established with
-the CDN server, this domain name will be used in the HTTP request to ask the CDN server to establish a WebSocket
-connection with this host.
+the CDN server, this domain name will be used in the `Host` header of the HTTP request to ask the CDN server to
+establish a WebSocket connection with this host.
+
+`CDNRequestUrlPath` is the url path used to build websocket request sent under `CDN` mode, and also only has effect
+when `Transport` is set to `CDN`. If unset, it will default to "/". This option is used to build the first line of the
+HTTP request after a TLS session is extablished. It's mainly for a Cloak server behind a reverse proxy, while only
+requests under specific url path are forwarded.
 
 `NumConn` is the amount of underlying TCP connections you want to use. The default of 4 should be appropriate for most
 people. Setting it too high will hinder the performance. Setting it to 0 will disable connection multiplexing and each
