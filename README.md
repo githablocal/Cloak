@@ -158,7 +158,7 @@ commandline argument (in standalone mode), or by Shadowsocks (in plugin mode). A
 the CDN server, this domain name will be used in the `Host` header of the HTTP request to ask the CDN server to
 establish a WebSocket connection with this host.
 
-`CDNRequestUrlPath` is the url path used to build websocket request sent under `CDN` mode, and also only has effect
+`CDNWsUrlPath` is the url path used to build websocket request sent under `CDN` mode, and also only has effect
 when `Transport` is set to `CDN`. If unset, it will default to "/". This option is used to build the first line of the
 HTTP request after a TLS session is extablished. It's mainly for a Cloak server behind a reverse proxy, while only
 requests under specific url path are forwarded.

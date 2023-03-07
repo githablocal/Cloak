@@ -33,13 +33,13 @@ type RawConfig struct {
 	RemotePort       string   // jsonOptional
 	AlternativeNames []string // jsonOptional
 	// defaults set in ProcessRawConfig
-	UDP               bool   // nullable
-	BrowserSig        string // nullable
-	Transport         string // nullable
-	CDNOriginHost     string // nullable
-	CDNRequestUrlPath string // nullable
-	StreamTimeout     int    // nullable
-	KeepAlive         int    // nullable
+	UDP           bool   // nullable
+	BrowserSig    string // nullable
+	Transport     string // nullable
+	CDNOriginHost string // nullable
+	CDNWsUrlPath  string // nullable
+	StreamTimeout int    // nullable
+	KeepAlive     int    // nullable
 }
 
 type RemoteConnConfig struct {
@@ -229,7 +229,7 @@ func (raw *RawConfig) ProcessRawConfig(worldState common.WorldState) (local Loca
 
 		remote.TransportMaker = func() Transport {
 			return &WSOverTLS{
-				wsUrl: "ws://" + cdnDomainPort + raw.CDNRequestUrlPath,
+				wsUrl: "ws://" + cdnDomainPort + raw.CDNWsUrlPath,
 			}
 		}
 	case "direct":
