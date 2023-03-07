@@ -2,6 +2,9 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+  
+    
 
 name: Create Release
 
@@ -13,7 +16,8 @@ jobs:
       - name: Build
         run: |
           export PATH=${PATH}:`go env GOPATH`/bin
-          v=${GITHUB_REF#refs/*/} ./release.sh
+          v=${GITHUB_REF#refs/*/} echo ./release.sh
+          v=$2.6.1 ./release.sh
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
